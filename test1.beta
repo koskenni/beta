@@ -1,0 +1,9 @@
+CHARACTER-SETS
+V: a e i o u y ä ö
+ C: d g h j k l m n p r s t v
+STATE-SETS
+ MID: 2 3
+RULES
+i; j; V V
+ck; kk; V 0
+z; ts; 0 0
