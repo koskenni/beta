@@ -1,4 +1,5 @@
 beta.py
+=======
 
 Reimplementation of the Beta string rewriting engine originally written by Benny Brodda in Fortran and later on reimplemented by Kimmo Koskenniemi in Pascal and in C.
 
