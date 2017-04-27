@@ -9,4 +9,12 @@ This program was written from scratch in Python3 without any reference to the ab
 
 This program is free software under the GPL 3 license
 
+The program depends on a package "datrie" which can be loaded using a command:
+
+    $ python3 -m pip datrie
+
+or
+
+    $ pip install datrie
+
 Version 0.1 - 2017-04-26
