@@ -14,6 +14,7 @@
 #
 # This program is free software under the GPL 3 license
 # Version 0.1 - 2017-04-26
+#       0.1.1 - 2017-04-27
 #
 from collections import deque
 import string
@@ -142,7 +143,7 @@ def character_sets(list_of_set_defs, verbosity):
     for lineno, set_def in list_of_set_defs:
         if verbosity >= 20:
             print(lineno, ">>>" + set_def + "<<<") ##
-        mat = re.match(r"^\s*(\w+):\s+(.+)\s*$", set_def)
+        mat = re.match(r"^\s*([-*\w]+):\s+(.+)\s*$", set_def)
         if mat:
             set_name = mat.group(1)
             symbol_str = mat.group(2)
@@ -156,7 +157,7 @@ def state_sets(list_of_set_defs, verbosity):
     for lineno, set_def in list_of_set_defs:
         if verbosity >= 20:
             print(lineno, ">>>" + set_def + "<<<") ##
-        mat = re.match(r"^\s*(\w+):\s+(.+)\s*$", set_def)
+        mat = re.match(r"^\s*([-\w*]+):\s+(.+)\s*$", set_def)
         if mat:
             set_name = mat.group(1)
             state_str = mat.group(2)
@@ -175,11 +176,11 @@ def rules(list_of_rules, verbosity):
              (?P<y>(?:[^%;]|%[%;])*) # y part
              ;                     # terminates the y part
              (?:\s+
-                (?P<lc> -? \w+))?  # lc
+                (?P<lc> -? [-*\w]+))?  # lc
              (?:\s+
-                (?P<rc> -? \w+))?  # rc
+                (?P<rc> -? [-*\w]+))?  # rc
              (?:\s+
-                (?P<sc> -? \w+))?  # sc
+                (?P<sc> -? [-*\w]+))?  # sc
              (?:\s+
                 (?P<rs> -? \d+))?  # rs
              (?:\s+
@@ -187,7 +188,7 @@ def rules(list_of_rules, verbosity):
              (?:\s+
                 (?P<md>\d+))?      # md
              \s*
-             (?:  [(]  [^)]*  [)]  )?  # comment in round parentheses
+             (?:  [(]  .*  [)]  )?  # comment in round parentheses
              \s*
            $""",
         re.X)
@@ -242,7 +243,7 @@ def read_beta_grammar(file_name, verbosity):
     state = "start"
     lineno = 0
     for line in f:
-        line = line.strip()
+        line = line.rstrip()
         lineno += 1
         # print(lineno, state, ">>" + line + "<<") ##
         if len(line) == 0 or line[0] == '!':
