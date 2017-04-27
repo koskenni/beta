@@ -11,7 +11,7 @@ This program is free software under the GPL 3 license
 
 The program depends on a package "datrie" which can be loaded using a command:
 
-    $ python3 -m pip datrie
+    $ python3 -m pip install datrie
 
 or
 
