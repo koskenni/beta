@@ -19,4 +19,5 @@ which works for Python 3.4 or later, or
 
 where you have to first install pip by some means specific to your system.
 
-Version 0.1 - 2017-04-26
+- **Version 0.1** - 2017-04-26: Initial release
+- **Version 0.1.1** 2017-04-27: Set identifiers may now contain also "-" and "*", x parts in rules may nou start with a space 
