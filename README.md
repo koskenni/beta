@@ -13,8 +13,10 @@ The program depends on a package "datrie" which can be loaded using a command:
 
     $ python3 -m pip install datrie
 
-or
+which works for Python 3.4 or later, or
 
     $ pip install datrie
+
+where you have to first install pip by some means specific to your system.
 
 Version 0.1 - 2017-04-26
