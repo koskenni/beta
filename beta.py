@@ -143,14 +143,15 @@ def character_sets(list_of_set_defs, verbosity):
     for lineno, set_def in list_of_set_defs:
         if verbosity >= 20:
             print(lineno, ">>>" + set_def + "<<<") ##
-        mat = re.match(r"^\s*([-*\w]+):\s+(.+)\s*$", set_def)
+        mat = re.match(r"^\s*([-#*\w]+):\s+(.+)\s*$", set_def)
         if mat:
             set_name = mat.group(1)
             symbol_str = mat.group(2)
             symbol_list = re.split(r"\s+", symbol_str)
+            symbol_list = [' ' if x == "BLANK" else x for x in symbol_list]
             chset[set_name] = set(symbol_list)
         else:
-            print(lineno, ":", set_def, "** incorrect")
+            print(lineno, ":", set_def, "** incorrect set definition")
 
 def state_sets(list_of_set_defs, verbosity):
     global stset, args
@@ -314,7 +315,14 @@ if __name__ == "__main__":
     args = arpar.parse_args()
 
     read_beta_grammar(args.rules, args.verbosity)
+    if "LIMITOR" not in chset:
+        chset["LIMITOR"] = {' '}
     import sys
     for line in sys.stdin:
-        betaproc(line.strip(), args.max_loops, args.verbosity)
+        if ' ' in chset["LIMITOR"]:
+            wdlist = re.split(r"\s+", line.strip())
+            for word in wdlist:
+                betaproc(word, args.max_loops, args.verbosity)        
+        else:
+            betaproc(line[:-1], args.max_loops, args.verbosity)
 
