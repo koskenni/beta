@@ -15,6 +15,7 @@
 # This program is free software under the GPL 3 license
 # Version 0.1 - 2017-04-26
 #       0.1.1 - 2017-04-27
+#         0.2 - 2017-10-17 : LIMITOR and BLANK implemented
 #
 from collections import deque
 import string
