@@ -320,6 +320,9 @@ if __name__ == "__main__":
         chset["LIMITOR"] = {' '}
     import sys
     for line in sys.stdin:
+        if line == "##\n" and args.verbosity in {0,1}:
+            args.verbosity = 1-args.verbosity
+            continue
         if ' ' in chset["LIMITOR"]:
             wdlist = re.split(r"\s+", line.strip())
             for word in wdlist:
