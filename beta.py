@@ -16,6 +16,8 @@
 # Version 0.1 - 2017-04-26
 #       0.1.1 - 2017-04-27
 #         0.2 - 2017-10-17 : LIMITOR and BLANK implemented
+#         0.3 - 2018-02-04 : trace on/off by ## and improved tracing
+#                            CHARATER-SETS and STATE-SETS sections now optional
 #
 from collections import deque
 import string
@@ -43,8 +45,8 @@ def betaproc(line, max_cycles, verbosity):
             print("** possibly an infinite loop, stopped at", max_cycles)
             return
         left, right, state = items.pop()
-        if verbosity > 0:
-            print(left + " >>> " + right + " -- " + str(state))
+        if verbosity > 1:
+            print("    " + left + " >>> " + right + " -- " + str(state))
         if len(right) <= 1 and len(left) >= 2:
             print(left[2:-1])
             continue                         # nothin more for this item
@@ -110,10 +112,15 @@ def betaproc(line, max_cycles, verbosity):
                     right1 = ""
                     print(left1[2:-2])
 
+                if verbosity > 0:
+                    print("    " + x + ";" + y + "; ", lc, rc, sc, ns, mv, md)
                 if ns < 0:              # neg rs increments
                     ns = state - ns
                 elif ns == 0:           # zero rs keeps the state
                     ns = state
+
+                if verbosity == 1:
+                    print("    " + left1 + " >>> " + right1 + " -- " + str(ns))
 
                 if len(left1) >= 2 and len(right1) >= 2:
                     items.appendleft((left1, right1, ns))
@@ -242,6 +249,9 @@ def rules(list_of_rules, verbosity):
 def read_beta_grammar(file_name, verbosity):
     global chset, stset, trie
     f = open(file_name, 'r')
+    list_of_char_sets = []
+    list_of_state_sets = []
+    list_of_rules = []
     state = "start"
     lineno = 0
     for line in f:
@@ -251,15 +261,12 @@ def read_beta_grammar(file_name, verbosity):
         if len(line) == 0 or line[0] == '!':
             continue
         if state == "start" and line == "CHARACTER-SETS":
-            list_of_char_sets = []
             state = "chsets"
             continue
         elif state in {"start", "chsets"} and line == "STATE-SETS":
-            list_of_state_sets = []
             state = "stsets"
             continue
         elif state in {"start", "chsets", "stsets"} and line == "RULES":
-            list_of_rules = []
             state = "rules"
             continue
         elif state == "chsets":
@@ -284,7 +291,7 @@ def read_beta_grammar(file_name, verbosity):
     # print("-- parsing rules")
     rules(list_of_rules, verbosity)
     
-def testing():
+def testing(verbosity):
     character_sets(
         'V: a e i o u y ä ö',
         'C: d f g h j k l m n p r s t v'
@@ -297,15 +304,15 @@ def testing():
         "iiii; ii; 0 0",
         "c; k; "
     )
-    if args.verbosity > 10:
+    if verbosity > 10:
         print(chset)
         for item in trie.items(''):
             print(item)
     return
 
 if __name__ == "__main__":
-    import argparse
-    arpar = argparse.ArgumentParser("python3 beta.py")
+    import argparse, sys
+    arpar = argparse.ArgumentParser("python3 beta.py # version 0.3")
     arpar.add_argument("-v", "--verbosity",
                        help="level of diagnostic output",
                        type=int, default=0)
@@ -318,15 +325,31 @@ if __name__ == "__main__":
     read_beta_grammar(args.rules, args.verbosity)
     if "LIMITOR" not in chset:
         chset["LIMITOR"] = {' '}
-    import sys
+    lim_expr = "[" + "".join(["\\" + s if s in {'-', ']'} else s
+                                  for s in chset["LIMITOR"]]) + "]+"
+    print("LIMITOR splitting expr:", lim_expr)###
+    buffer = ""
     for line in sys.stdin:
         if line == "##\n" and args.verbosity in {0,1}:
             args.verbosity = 1-args.verbosity
+            if args.verbosity == 1:
+                print("    Trace now ON")
+            else:
+                print("    Trace now OFF")
             continue
         if ' ' in chset["LIMITOR"]:
             wdlist = re.split(r"\s+", line.strip())
             for word in wdlist:
                 betaproc(word, args.max_loops, args.verbosity)        
-        else:
+        elif '#' in chset["LIMITOR"]:
             betaproc(line[:-1], args.max_loops, args.verbosity)
-
+        else:
+            buffer = buffer + " " + line[:-1]
+            while True:
+                l = re.split(lim_expr, buffer, maxsplit=1)
+                if len(l) == 1:
+                    break
+                betaproc(l[0], args.max_loops, args.verbosity)
+                buffer = l[1]
+    if buffer:
+        betaproc(buffer, args.max_loops, args.verbosity)
