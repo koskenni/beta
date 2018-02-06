@@ -327,7 +327,7 @@ if __name__ == "__main__":
         chset["LIMITOR"] = {' '}
     lim_expr = "[" + "".join(["\\" + s if s in {'-', ']'} else s
                                   for s in chset["LIMITOR"]]) + "]+"
-    print("LIMITOR splitting expr:", lim_expr)###
+    #print("LIMITOR splitting expr:", lim_expr)###
     buffer = ""
     for line in sys.stdin:
         if line == "##\n" and args.verbosity in {0,1}:
