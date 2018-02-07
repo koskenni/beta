@@ -7,7 +7,9 @@ The input formalism follows the C version as documented in F. Karlsson and K. Ko
 
 This program was written from scratch in Python3 without any reference to the above mentioned predecessors.
 
-This program is free software under the GPL 3 license
+This program is free software under the GPL 3 license. You can load beta.py by cloning the koskenni/beta directory in Github. If you only want the beta.py file (which is sufficien for many purposes) you may (use your browser or the wget program e.g. in Gnu/Linux, Unix or Mac iOS to) load it from:
+
+    https://raw.githubusercontent.com/koskenni/beta/master/beta.py
 
 The program depends on a package "datrie" which can be loaded for global use (if you have the priviliges) by using a command:
 
