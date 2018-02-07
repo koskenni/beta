@@ -26,3 +26,5 @@ If you are using a server for which you have only normal user priviliges, you mi
 - **Version 0.1** - 2017-04-26: Initial release
 - **Version 0.1.1** 2017-04-27: Set identifiers may now contain also "-" and "*", x parts in rules may nou start with a space 
 - **Version 0.2** 2017-10-17: Now even LIMITOR and BLANK implemented
+- **Version 0.3** - 2018-02-07: LIMITOR improved, tracing improved
+- **Version 0.3.2** - 2018-02-08: Char and state set names can now include #

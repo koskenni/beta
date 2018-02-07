@@ -185,11 +185,11 @@ def rules(list_of_rules, verbosity):
              (?P<y>(?:[^%;]|%[%;])*) # y part
              ;                     # terminates the y part
              (?:\s+
-                (?P<lc> -? [-*\w]+))?  # lc
+                (?P<lc> -? [-*\w#]+))?  # lc
              (?:\s+
-                (?P<rc> -? [-*\w]+))?  # rc
+                (?P<rc> -? [-*\w#]+))?  # rc
              (?:\s+
-                (?P<sc> -? [-*\w]+))?  # sc
+                (?P<sc> -? [-*\w#]+))?  # sc
              (?:\s+
                 (?P<rs> -? \d+))?  # rs
              (?:\s+
