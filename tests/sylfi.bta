@@ -1,0 +1,87 @@
+! Counts syllables of Finnish words
+CHARACTER-SETS
+ V: a e i o u y ä ö
+ C: # b c d f g h j k l m n p q r s š t v w x z ž
+ #: #
+STATE-SETS
+ s1: 1
+ s2: 2
+ s3: 3
+ s4: 4
+ s5: 5
+ s6: 6
+ s2-6: 2 3 4 5 6
+RULES
+! vowel cluster: short, long vowels and diphthongs in all positions
+!x y                LC  RC  SC  RS  
+a; a;                0   0   0  -1
+e; e;
+i; i;
+o; o;
+u; u;
+y; y;
+ä; ä;
+ö; ö;
+aa; aa;
+ee; ee;
+oo; oo;
+uu; uu;
+yy; yy;
+ää; ää;
+öi; öi;
+öö; öö;
+ai; ai;
+ei; ei;
+oi; oi;
+ui; ui;
+yi; yi;
+äi; äi;
+! diphthongs in the first syllable
+!x y                LC  RC  SC  RS  
+au; au;              0   0  s1  -1
+äy; äy;
+ou; ou;
+öy; öy;
+ei; ei;
+eu; eu;
+ey; ey;
+iu; iu;
+iy; iy;
+ie; ie;
+uo; uo;
+yö; yö;
+! exceptions
+!x y                LC  RC  SC  RS  
+ien; ien;            #   0  s1  -2
+ies; ies;
+!!!aie; aie; 
+! diphthongs in later clusters only before an open syllable
+!x y                LC  RC  SC  RS  
+aud; aud;            C   V s2-6 -1
+aut; aut;
+eud; eud;
+eut; eut;
+eyd; eyd;
+eyt; eyt;
+ied; ied;
+iet; iet;
+iyd; iyd;
+iyt; iyt;
+oud; oud;
+out; out;
+uod; uod;
+uot; uot;
+yöd; yöd;
+yöt; yöt;
+äyd; äyd;
+äyt; äyt;
+öyd; öyd;
+öyt; öyt;
+! print the state i.e. number of syllables
+!x y                LC  RC  SC  RS  MV  
+#; =0#;              0   #  s1   0   7
+#; =1#;              0   #  s2   0   7
+#; =2#;              0   #  s3   0   7
+#; =3#;              0   #  s4   0   7
+#; =4#;              0   #  s5   0   7
+#; =5#;              0   #  s6   0   7
