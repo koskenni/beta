@@ -176,8 +176,18 @@ def state_sets(list_of_set_defs, verbosity):
         else:
             print(lineno, ":", set_def, "** incorrect")
 
+def check_validity_of_set(name, the_set, lineno, rule):
+    if name == "0": return
+    if name and name[0] == "-":
+        if name[1:] in the_set: return
+    else:
+        if name in the_set: return
+    print("*** ERROR: undefined set name:", name)
+    print("LINE", lineno, ":", rule)
+    exit()
+
 def rules(list_of_rules, verbosity):
-    global trie, args
+    global trie, args, chset, stset
     lc, rc, sc, rs, mv, md = ('0', '0', '0', 1, 5, 1)
     pat = re.compile(
         r"""^(?P<x>(?:[^;]|%[%;])+) # x part
@@ -185,11 +195,11 @@ def rules(list_of_rules, verbosity):
              (?P<y>(?:[^%;]|%[%;])*) # y part
              ;                     # terminates the y part
              (?:\s+
-                (?P<lc> -? [-*\w#]+))?  # lc
+                (?P<lc> -? [^( ]+))?  # lc
              (?:\s+
-                (?P<rc> -? [-*\w#]+))?  # rc
+                (?P<rc> -? [^( ]+))?  # rc
              (?:\s+
-                (?P<sc> -? [-*\w#]+))?  # sc
+                (?P<sc> -? [^( ]+))?  # sc
              (?:\s+
                 (?P<rs> -? \d+))?  # rs
              (?:\s+
@@ -219,10 +229,13 @@ def rules(list_of_rules, verbosity):
                 exit()
             if gd['lc']:
                 lc = gd['lc']
+                check_validity_of_set(lc, chset, lineno, rule)
             if gd['rc']:
                 rc = gd['rc']
+                check_validity_of_set(rc, chset, lineno, rule)
             if gd['sc']:
                 sc = gd['sc']
+                check_validity_of_set(sc, stset, lineno, rule)
             if gd['rs']:
                 rs = int(gd['rs'])
             if gd['mv']:

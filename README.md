@@ -30,3 +30,5 @@ If you are using a server for which you have only normal user priviliges, you mi
 - **Version 0.2** 2017-10-17: Now even LIMITOR and BLANK implemented
 - **Version 0.3** - 2018-02-07: LIMITOR improved, tracing improved
 - **Version 0.3.2** - 2018-02-08: Char and state set names can now include #
+- **Version 0.3,3** - 2018-02-09: Validity of ch and st sets is checked; character and state names may now have more symbols in them; parenthesis comments now also for rules without condition or other params
+
