@@ -1,6 +1,17 @@
-# beta.py
+# beta.py - Version 0.3.4
 #
-# Copyright 2017 by Kimmo Koskenniemi
+copyright = """Copyright © 2017-2018, Kimmo Koskenniemi
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at
+your option) any later version.
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
 #
 # Reimplementation of the Beta string rewriting engine originally
 # written by Benny Brodda in Fortran and later on reimplemented by
@@ -10,14 +21,7 @@
 # Yliopistopaino, 1990.
 #
 # This program was written from scratch in Python3 without any
-# reference to the above mentioned predecessors.
-#
-# This program is free software under the GPL 3 license
-# Version 0.1 - 2017-04-26
-#       0.1.1 - 2017-04-27
-#         0.2 - 2017-10-17 : LIMITOR and BLANK implemented
-#         0.3 - 2018-02-04 : trace on/off by ## and improved tracing
-#                            CHARATER-SETS and STATE-SETS sections now optional
+# reference to the predecessors mentioned above.
 #
 from collections import deque
 import string
@@ -325,7 +329,7 @@ def testing(verbosity):
 
 if __name__ == "__main__":
     import argparse, sys
-    arpar = argparse.ArgumentParser("python3 beta.py # version 0.3")
+    arpar = argparse.ArgumentParser("python3 beta.py # version 0.3.4")
     arpar.add_argument("-v", "--verbosity",
                        help="level of diagnostic output",
                        type=int, default=0)
