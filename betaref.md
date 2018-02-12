@@ -278,15 +278,15 @@ to produce them by means of rewriting rules. For this purpose, the
 percent character (%) has been reserved, and the exceptional
 characters are produced as combinations of two characters:
 
-- \%n newline
+- `%n` newline
 
-- \%t tab
+- `%t` tab
 
-- \%; semicolon (in rules)
+- `%;` semicolon (in rules)
 
-- \%! exclamation mark (in the first column)
+- `%!` exclamation mark (in the first column)
 
-- \%% percent mark
+- `%%` percent mark
 
 These combinations of two characters must be used in rules as well as in
 character set definitions, e.g.:
@@ -525,7 +525,7 @@ processing (7-8).
 
 (1)      |   (2)   |  (3)  |   (4)  |  (5)  |  (6)   | (7)  |  (8)
 ---------|---------|-------|-------|-------|--------|------|-------
-text to be sub- stitu- ted | result of sub- stitu- tion | left con- text | right con- text |  state cond. | result state | move | mode of appl.
+text to be sub- stituted | result of sub- stitution | left con- text | right con- text |  state cond. | result state | move | mode of appl.
 X    |   Y   |  LC   |   RC   |   SC  |  RS   |   MV   | MD
 
 Each rule has the eight parameter values, either as given or indirectly
@@ -573,19 +573,19 @@ sometimes be useful, for example in indicating the place of the found
 string in searching. Here are examples of substitution:
 
 X; Y;       | replacement |            comments
-------------|-------------|---------------------------------
-a; b; | "a" -> "b"  |
-ab; ac; | "ab" -> "ac" |
-abc; def; | "abc" -> "def" |
-abc; d; | "abc" -> "d" |
-a;&#160;; | "a" -> "" | a is deleted
-a;&#160;&#160;; | "a" -> "&#160;" | a is changed into a space
-abc;&#160;; | "abc" -> "" |
-abc;&#160;&#160;; | "abc" -> " " |
-abc;&#160;&#160;&#160;abc; | "abc " -> "&#160;&#160;abc" | add two extra empty spaces in front of the string abc
-&#160;;&#160;; | " " -> "" | a space character is deleted
-a; a; |  | a is only observed; used e.g. when moving into another state  when a is encountered)
-&#160;;&#160;&#160;; | | an empty space is only observed; used particularly in extraction when passing a word boundary; by adding the value of state by one each time when an empty space  has been encountered, it is possible to count how many words have been bypassed)
+-------------|-------------|---------------------------------
+`a; b;` | `"a" -> "b"`  |
+`ab; ac;` | `"ab" -> "ac"` |
+`abc; def;` | `"abc" -> "def"` |
+`abc; d;` | `"abc" -> "d"` |
+`a; ;` | `"a" -> ""` | (a, semicolon, space, semicolon) a is deleted
+`a;  ;` | `"a" -> " "` | a is changed into a space
+`abc; ;` | `"abc" -> ""` | (a, b, c, semicolon, space, semicolon)
+`abc;`&#160;&#160;`;` | `"abc" -> " "` | (a, b, c, semicolon, two spaces, semicolon)
+`abc;`&#160;&#160;&#160;`abc;` | `"abc " -> "`&#160;&#160;`abc"` | (a, b, c, semicolon, three spaces, a, b, c, semicolon) add two extra empty spaces in front of the string abc
+&#160;`; ;` | `" " -> ""` | (space, semicolon, space, semicolon) a space character is deleted
+`a; a;` |  | a is only observed; used e.g. when moving into another state  when a is encountered
+&#160;;&#160;&#160;&#160;; | `" " -> " "` | (one space, semicolon, two spaces, semicolon) an empty space is only observed; used particularly in extraction when passing a word boundary; by adding the value of state by one each time when an empty space  has been encountered, it is possible to count how many words have been bypassed.
 
 
 An important restriction on the substitution is that X and Y must be
