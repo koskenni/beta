@@ -1,6 +1,6 @@
 # BETA: Tool for a Linguist
 
-Fred Karlsson, Kimmo Koskenniemi abd Arvi Hurskainen
+Fred Karlsson, Kimmo Koskenniemi and Arvi Hurskainen
 
 Helsinki 2018
 
