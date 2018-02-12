@@ -155,7 +155,7 @@ def character_sets(list_of_set_defs, verbosity):
     for lineno, set_def in list_of_set_defs:
         if verbosity >= 20:
             print(lineno, ">>>" + set_def + "<<<") ##
-        mat = re.match(r"^\s*([-#*\w]+):\s+(.+)\s*$", set_def)
+        mat = re.match(r"^\s*([^( :]+):\s+(.+)\s*$", set_def)
         if mat:
             set_name = mat.group(1)
             symbol_str = mat.group(2)
