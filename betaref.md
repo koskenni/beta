@@ -572,8 +572,8 @@ will be part of the substitution string. Such empty spaces may
 sometimes be useful, for example in indicating the place of the found
 string in searching. Here are examples of substitution:
 
-X; Y;       | replacement |            comments
--------------|-------------|---------------------------------
+X; Y;        | replacement&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;           |    comments
+-------------|-----------------------|-------------------------
 `a; b;` | `"a" -> "b"`  |
 `ab; ac;` | `"ab" -> "ac"` |
 `abc; def;` | `"abc" -> "def"` |
