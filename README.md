@@ -3,7 +3,7 @@ beta.py
 
 Reimplementation of the Beta string rewriting engine originally written by Benny Brodda in Fortran and later on reimplemented by Kimmo Koskenniemi in Pascal and in C.
 
-The input formalism follows the C version as documented in F. Karlsson and K. Koskenniemi, "Beta-ohjelma kielentutkimuksen apuvälineenä", Yliopistopaino, 1990. An English version of that manual is available here as a manual [[BETA: a tool for a linguist|https://github.com/koskenni/beta/betaref.md]].
+The input formalism follows the C version as documented in F. Karlsson and K. Koskenniemi, "Beta-ohjelma kielentutkimuksen apuvälineenä", Yliopistopaino, 1990. An English version of that manual is available here as a manual [[BETA: a tool for a linguist|https://github.com/koskenni/beta/blob/master/betaref.md]].
 
 This program was written from scratch in Python3 without any reference to the above mentioned predecessors.
 
