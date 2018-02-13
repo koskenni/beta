@@ -1,0 +1,9 @@
+! tense.bta   (produces some Swahili tense forms)
+! A.H. 15.4. 1992
+CHARACTER-SETS
+STATE-SETS
+RULES
++TENSE+; +NA+;       0   0   0   0   5   2
++TENSE+; +ME+;       0   0   0   0   5   2
++TENSE+; +LI+;       0   0   0   0   5   2
++TENSE+; +KA+;       0   0   0   0   5   1

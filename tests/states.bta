@@ -1,0 +1,16 @@
+! states.bta  (illustrates the use of states)
+! A.H. 15.4. 1992
+CHARACTER-SETS
+STATE-SETS
+ Start:   1
+ 24:      2 4
+ 13:      1 3
+ 35:      3 5
+RULES
+!              lc   rc   sc    rs   mv   md
+ae; ai;        0    0    Start 4    5    1  (rule 1)
+i; ii;         0    0    24    3    5    1  (rule 2)
+ou; uu;        0    0    13    5    5    1  (rule 3)
+x; xx;         0    0    24    4    5    1  (rule 4)
+yz; yx;        0    0    35    6    5    1  (rule 5) 
+a; b;          0    0    Start 2    5    1  (rule 6)
