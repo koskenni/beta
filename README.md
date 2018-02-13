@@ -7,11 +7,11 @@ The input formalism follows the C version as documented in F. Karlsson and K. Ko
 
 This program was written from scratch in Python3 without any reference to the above mentioned predecessors.
 
-This program is free software under the GPL 3 license. You can load beta.py by cloning the koskenni/beta directory in Github. If you only want the beta.py file (which is sufficien for many purposes) you may (use your browser or the wget program e.g. in Gnu/Linux, Unix or Mac iOS to) load it from:
+This program is free software under the GPL 3 license. 
 
-    https://raw.githubusercontent.com/koskenni/beta/master/beta.py
+Instructions for installing the beta.py program can be found in the [Beta wiki](https://github.com/koskenni/beta/wiki/faq).
 
-The program depends on a package "datrie" which must be installed on your system, see the Beta wiki for [detailed instructions](https://github.com/koskenni/beta/wiki).
+The program depends on a package "datrie" which must be installed on your system, see the Beta wiki for [detailed instructions](https://github.com/koskenni/beta/wiki/faq).
 
 - **Version 0.1** - 2017-04-26: Initial release
 - **Version 0.1.1** 2017-04-27: Set identifiers may now contain also "-" and "*", x parts in rules may nou start with a space 
