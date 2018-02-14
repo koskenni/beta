@@ -9,7 +9,7 @@ This program was written from scratch in Python3 without any reference to the ab
 
 This program is free software under the GPL 3 license. 
 
-Instructions for installing the beta.py program can be found in the [Beta wiki](https://github.com/koskenni/beta/wiki/faq).
+Instructions for installing the beta.py program can be found in the [Beta wiki](https://github.com/koskenni/beta/wiki/faq) and in particular, on the page [install](https://github.com/koskenni/beta/wiki/install).
 
 The program depends on a package "datrie" which must be installed on your system, see the Beta wiki for [detailed instructions](https://github.com/koskenni/beta/wiki/faq).
 
