@@ -1256,8 +1256,8 @@ with a simple example. We have a string:
 and we want to find the occurrences of the string 'and'. We should get
 the following output:
 
-    there were boys \<and\> girls and many adults
-    there were boys and girls \<and\> many adults
+    there were boys <and> girls and many adults
+    there were boys and girls <and> many adults
 
 The following simple Beta grammar performs the task:
 
