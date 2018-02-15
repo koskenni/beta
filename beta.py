@@ -1,4 +1,5 @@
-# beta.py - Version 0.3.4
+#!/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5
+# beta.py - Version 0.3.5
 #
 copyright = """Copyright © 2017-2018, Kimmo Koskenniemi
 This program is free software: you can redistribute it and/or modify
@@ -36,7 +37,7 @@ trie = datrie.Trie(characters)
 chset = {}
 stset = {}
 
-def betaproc(line, max_cycles, verbosity):
+def betaproc(line, max_cycles, verbosity, output_file):
     global trie, chset, stset
     cycles = 0
     items = deque()
@@ -52,7 +53,7 @@ def betaproc(line, max_cycles, verbosity):
         if verbosity > 1:
             print("    " + left + " >>> " + right + " -- " + str(state))
         if len(right) <= 1 and len(left) >= 2:
-            print(left[2:-1])
+            print(left[2:-1], file=output_file)
             continue                         # nothin more for this item
         rule_items = trie.prefix_items(right)
         item_list = []
@@ -114,7 +115,7 @@ def betaproc(line, max_cycles, verbosity):
                 elif mv == 7:           # accept this item immediately
                     left1 = left + y + right[len(x):]
                     right1 = ""
-                    print(left1[2:-2])
+                    print(left1[2:-2], file=output_file)
 
                 if verbosity > 0:
                     print("    " + x + ";" + y + "; ", lc, rc, sc, ns, mv, md)
@@ -330,14 +331,29 @@ def testing(verbosity):
 if __name__ == "__main__":
     import argparse, sys
     arpar = argparse.ArgumentParser("python3 beta.py # version 0.3.4")
+    arpar.add_argument("rules", help="the name of the beta rule grammar file")
+    arpar.add_argument("-i", "--input",
+                        help="file from which input is read if not stdin",
+                        default="")
+    arpar.add_argument("-o", "--output",
+                            help="file to which output is written if not stdout",
+                            default="")
     arpar.add_argument("-v", "--verbosity",
                        help="level of diagnostic output",
                        type=int, default=0)
     arpar.add_argument("-m", "--max_loops",
                        help="maximum number of cycles per one input line",
-                       type=int, default=1000)
-    arpar.add_argument("-r", "--rules", help="rule file")
+                       type=int, default=10000)
     args = arpar.parse_args()
+
+    if args.output:
+        output_file = open(args.output, "w")
+    else:
+        output_file = sys.stdout
+    if args.input:
+        input_file = open(args.input, "r")
+    else:
+        input_file = sys.stdin
 
     read_beta_grammar(args.rules, args.verbosity)
     if "LIMITOR" not in chset:
@@ -346,7 +362,7 @@ if __name__ == "__main__":
                                   for s in chset["LIMITOR"]]) + "]+"
     #print("LIMITOR splitting expr:", lim_expr)###
     buffer = ""
-    for line in sys.stdin:
+    for line in input_file:
         if line == "##\n" and args.verbosity in {0,1}:
             args.verbosity = 1-args.verbosity
             if args.verbosity == 1:
@@ -357,16 +373,16 @@ if __name__ == "__main__":
         if ' ' in chset["LIMITOR"]:
             wdlist = re.split(r"\s+", line.strip())
             for word in wdlist:
-                betaproc(word, args.max_loops, args.verbosity)        
+                betaproc(word, args.max_loops, args.verbosity, output_file)        
         elif '#' in chset["LIMITOR"]:
-            betaproc(line[:-1], args.max_loops, args.verbosity)
+            betaproc(line[:-1], args.max_loops, args.verbosity, output_file)
         else:
             buffer = buffer + " " + line[:-1]
             while True:
                 l = re.split(lim_expr, buffer, maxsplit=1)
                 if len(l) == 1:
                     break
-                betaproc(l[0], args.max_loops, args.verbosity)
+                betaproc(l[0], args.max_loops, args.verbosity, output_file)
                 buffer = l[1]
     if buffer:
-        betaproc(buffer, args.max_loops, args.verbosity)
+        betaproc(buffer, args.max_loops, args.verbosity, output_file)

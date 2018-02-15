@@ -1,4 +1,4 @@
-BETA = python3.5 ../beta.py --rules
+BETA = ../beta.py
 BASES = $(basename $(wildcard *.bta))
 
 all: $(addsuffix .output,$(BASES))
