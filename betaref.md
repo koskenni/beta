@@ -118,7 +118,7 @@ directed into a file. If the user has problems in giving
 the names of the rule grammar files and input files required by
 Python Beta, one can ask it for help:
 
-    $ python3 beta.py --help
+    $ beta.py --help
 
 By default, input units are word tokens separated by blank space. If
 several word tokens appear on a line, each is processed separately. It
@@ -365,9 +365,9 @@ experiment with it by using a computer. Assuming that the above grammar
 file demou-w.bta has been saved in the current directory (the directory
 where we are currently operating), we may execute the program by writing
 on the command line (again assuming that the beta.py program has been
-installed in the same directory you are working):
+installed properly):
 
-    $ python3 beta.py -r demou-w.bta
+    $ beta.py demou-w.bta
 
 After being called the program reads in the grammar file, interprets
 the rules and then waits for input. Let us input a word to be
@@ -393,7 +393,7 @@ Beta, the second line is the word we typed as input to the rules. The
 last line is the output string the program produces, and the lines
 before that contain the tracing information.
 
-    $ python3 beta.py -r demou-w.bta -v 2
+    $ beta.py demou-w.bta -v 2
     mualimu
     ## >>> mualimu ## -- 1
     ##m >>> ualimu ## -- 1
@@ -419,7 +419,7 @@ reaches the end marker `##`, the string is complete and is printed.
 Usually we are not that curious to see all those steps where no rules
 are applied. Then we use a weaker trace, '-v 1':
 
-    $ python3 beta.py -r demou-w.bta -v 1
+    $ beta.py demou-w.bta -v 1
     mualimu
     u;w; M Vo Start 0 5 1
     ##mw >>> alimu ## -- 1
@@ -795,7 +795,7 @@ eliminated.
 When the string *aeiouxyz* is entered, with trace on (by parameter -v
 1), we get the following trace:
 
-    $ python3 beta.py -r states.bta -v 1
+    $ beta.py states.bta -v 1
     aeiouxyz
     ae;ai; 0 0 Start 4 5 1
     ##ai >>> iouxyz## -- 4
@@ -1057,7 +1057,7 @@ in place of the tense marker. We write the following Beta grammar:
 If we now enter the string NI+TENSE+SOMA, with trace on, we get the
 following output:
 
-    $ python3 beta.py -r tense.bta -v 1
+    $ beta.py tense.bta -v 1
     NI+TENSE+SOMA
     +TENSE+;+NA+; 0 0 0 0 5 2
     ##NI+NA+ >>> SOMA## -- 1
@@ -1462,14 +1462,14 @@ The following guidelines apply to the Linux and Unix systems. In order
 to get information on the use of the program, one may first ask it for
 help:
 
-    $ python3 beta.py --help
+    $ beta.py --help
 
 The program responds by listing the different parameters it
 understands and their short forms. Then, one can start the Beta
 program e.g. for testing. When the Beta program is called, also a Beta
 grammar file must be given to it.
 
-    $ python3 beta.py -r sw-aux.bta
+    $ beta.py sw-aux.bta
 
 Now Beta expects input from the keyboard, and the standard output is the
 screen. This is a useful mode of operation when testing rules and
@@ -1479,7 +1479,7 @@ parameter '-v 1' or by entering a double hash `##`).
 If input is taken from a file, this will be given as the third
 parameter. Also, in this case the output is seen on the screen.
 
-    $ python3 beta.py -r sw-aux.bta < test.txt
+    $ beta.py sw-aux.bta < test.txt
 
 ### 6.2. Trace
 
@@ -1570,13 +1570,13 @@ it. And there are tasks that are very hard to implement without Beta.
 
 In order to use the Python Beta program, one needs to have a fairly
 recent version of Python3 installed and the beta.py file which is
-located in
-[[https://github.com/koskenni/beta]{.underline}](https://github.com/koskenni/beta)
-and is freely available. The detailed instructions for installing the
-program are found in the README file there. One related package, datrie,
-is needed in addition to the beta.py program itself. See the
-instructions there, and report to the author if you meet any problems in
-installing or using beta.py.
+located in https://github.com/koskenni/beta and is freely
+available. The detailed instructions for installing the program are
+found in the [Beta wiki](https://github.com/koskenni/beta/wiki/). One
+related package, datrie, is needed in addition to the beta.py program
+itself. See the instructions in the same Beta wiki. Please, report to
+the author if you meet any problems in installing or using beta.py.
+
 
 ### Characters which can be used in the Beta grammars and in input texts 
 
@@ -1624,20 +1624,24 @@ names of all coding systems that the program knows by:
 
 ### Python Beta help
 
-    $ python3 beta.py --help
-    usage: python3 beta.py  [-h] [-v VERBOSITY]
-                            [-m MAX_LOOPS] [-r RULES]
+```
+$ beta.py --help
+usage: beta.py [-h] [-i INPUT] [-o OUTPUT]
+               [-v VERBOSITY] [-m MAX_LOOPS]
+               rules
 
-    optional arguments:
-    
-      -h, --help            show this help message and exit
-    
-      -v VERBOSITY, --verbosity VERBOSITY
-                            level of diagnostic output
-    
-      -m MAX_LOOPS, --max_loops MAX_LOOPS
-                            maximum number of cycles per one input line
-    
-      -r RULES, --rules RULES
-                            rule file    rule file
+positional arguments:
+  rules                 the name of the beta rule grammar file
 
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        file from which input is read if not stdin
+  -o OUTPUT, --output OUTPUT
+                        file to which output is written if not stdout
+  -v VERBOSITY, --verbosity VERBOSITY
+                        level of diagnostic output
+  -m MAXLOOPS, --max-loops MAXLOOPS
+                        maximum number of cycles per one input line
+                        rule file    rule file
+```

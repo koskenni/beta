@@ -19,4 +19,5 @@ The program depends on a package "datrie" which must be installed on your system
 - **Version 0.3** - 2018-02-07: LIMITOR improved, tracing improved
 - **Version 0.3.2** - 2018-02-08: Char and state set names can now include #
 - **Version 0.3,3** - 2018-02-09: Validity of ch and st sets is checked; character and state names may now have more symbols in them; parenthesis comments now also for rules without condition or other params
+- **Version 0.4** - 2018-02-15: grammar file now as obligatory argument and --input and --output parameters added
 

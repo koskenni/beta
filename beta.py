@@ -1,5 +1,5 @@
 #!/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5
-# beta.py - Version 0.3.5
+# beta.py - Version 0.4
 #
 copyright = """Copyright © 2017-2018, Kimmo Koskenniemi
 This program is free software: you can redistribute it and/or modify
@@ -330,7 +330,7 @@ def testing(verbosity):
 
 if __name__ == "__main__":
     import argparse, sys
-    arpar = argparse.ArgumentParser("python3 beta.py # version 0.3.4")
+    arpar = argparse.ArgumentParser("python3 beta.py # version 0.4")
     arpar.add_argument("rules", help="the name of the beta rule grammar file")
     arpar.add_argument("-i", "--input",
                         help="file from which input is read if not stdin",
@@ -341,7 +341,7 @@ if __name__ == "__main__":
     arpar.add_argument("-v", "--verbosity",
                        help="level of diagnostic output",
                        type=int, default=0)
-    arpar.add_argument("-m", "--max_loops",
+    arpar.add_argument("-m", "--max-loops",
                        help="maximum number of cycles per one input line",
                        type=int, default=10000)
     args = arpar.parse_args()
