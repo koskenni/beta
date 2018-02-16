@@ -6,5 +6,6 @@
 *.docx
 *.zip
 HISTORY*
+__pycache__/*
 *.output
 *öö*
