@@ -34,7 +34,9 @@ FORTRAN in 1970s. Kimmo Koskenniemi from Helsinki rewrote it in Pascal
 in 1981 and later in C-language. Fred Karlsson has written it in
 InterLisp and MuLisp. Earlier implementations were not free and open
 source, so Kimmo Koskenniemi re-implemented the Beta program in Python
-in 2017 which is available at *https://github.com/koskenni/beta*.
+in 2017 which is free, open source and available at 
+*https://github.com/koskenni/beta*. The instructions for installing it
+can also be found at Github, see *https://github.com/koskenni/beta/wiki*
 
 The formalism for Beta rules is practically identical in all
 implementations mentioned above. The subsequent discussion describes how
