@@ -13,7 +13,7 @@ Instructions for installing the beta.py program can be found in the [Beta wiki](
 
 The program depends on a package "datrie" which must be installed on your system, see the Beta wiki for [detailed instructions](https://github.com/koskenni/beta/wiki/faq).
 
-The beta.py program runs at least on Gnu/Linux, Unix, Mac iOS and WIndows 7 platforms providing that an appropriate Python 3 (version 3.5 or higher) is installed.
+The beta.py program runs at least on Gnu/Linux, Unix, Mac OS X and WIndows 7 platforms providing that an appropriate Python 3 (version 3.5 or higher) is installed.
 
 - **Version 0.1** - 2017-04-26: Initial release
 - **Version 0.1.1** 2017-04-27: Set identifiers may now contain also "-" and "*", x parts in rules may nou start with a space 
