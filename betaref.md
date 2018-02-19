@@ -174,7 +174,7 @@ BC, ABC, BCD and CD, but not AC, ACD or BD.
 
 In the following discussion on Beta, it is assumed that the user has
 access to such an operating system, where commands are given on a
-command line (e.g. DOS, Linux, Unix, Mac iOS). The user should also be
+command line (e.g. DOS, Linux, Unix, Mac OS X). The user should also be
 acquainted with a program editor operating in ASCII or UTF-8 format
 (e.g. Emacs, Epsilon). If one wants to use a text editor, such as
 Microsoft Office Word, in writing Beta grammars, one must make sure
@@ -193,7 +193,7 @@ and Epsilon. Also, such text editors can be used if they enable
 reading and saving the file in 'Text Only' Unicode UTF-8 coding.
 
 Beta grammar files are given names according to the conventions of the
-operating system (Linux, Unix, Mac iOS, Windows). Beta grammar files
+operating system (Linux, Unix, Mac OS X, Windows). Beta grammar files
 are often given names with a suffix '.bta' or '.beta'. Examples of
 suitable rule file names are:
 
@@ -448,7 +448,7 @@ We see that the same rule has applied two times, because there are two
 occurrences with proper contexts in the same string, where the context
 conditions are met.
 
-On Linux, Unix and Mac iOS platforms, you can exit the Beta program by
+On Linux, Unix and Mac OS X platforms, you can exit the Beta program by
 the entering a Control-D (= press Ctrl-key first and then D-key without
 releasing the Ctrl key). In Windows and MS-DOS operating system, one
 enters a Control-Z in order to signal the end of input and exit the Beta
