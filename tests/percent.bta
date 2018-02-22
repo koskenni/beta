@@ -1,0 +1,9 @@
+CHARACTER-SETS
+ LIMITOR: #
+RULES
+percent; %%;
+newline; %n;
+semicolon; %;;
+tab; %t;
+exclamation; %!;
+

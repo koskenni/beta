@@ -191,13 +191,21 @@ def check_validity_of_set(name, the_set, lineno, rule):
     print("LINE", lineno, ":", rule)
     exit()
 
+def decode_quoted(str):
+    str = str.replace("%;", ";")
+    str = str.replace("%!", "!")
+    str = str.replace("%n", "\n")
+    str = str.replace("%t", "\t")
+    str = str.replace("%%", "%")
+    return(str)
+
 def rules(list_of_rules, verbosity):
     global trie, args, chset, stset
     lc, rc, sc, rs, mv, md = ('0', '0', '0', 1, 5, 1)
     pat = re.compile(
-        r"""^(?P<x>(?:[^;]|%[%;])+) # x part
+        r"""^(?P<x>(?:[^;]|%[%;!nt])+) # x part
              ;\s                   # terminates the x part
-             (?P<y>(?:[^%;]|%[%;])*) # y part
+             (?P<y>(?:[^%;]|%[%;!nt])*) # y part
              ;                     # terminates the y part
              (?:\s+
                 (?P<lc> -? [^( ]+))?  # lc
@@ -223,12 +231,12 @@ def rules(list_of_rules, verbosity):
             if verbosity >= 20:
                 print(gd)
             if gd['x']:
-                x = gd['x']
+                x = decode_quoted(gd['x'])
             else:
                 print("** no valid x part on line", linenum, line)
                 exit()
             if gd['y'] or gd['y'] == "":
-                y = gd['y']
+                y = decode_quoted(gd['y'])
             else:
                 print("** no valid y part on line", linenum, line)
                 exit()
