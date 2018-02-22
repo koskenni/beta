@@ -278,7 +278,8 @@ It is possible to treat also the newline and tab characters with Beta
 rules. There are no newline marks in the input text, but it is possible
 to produce them by means of rewriting rules. For this purpose, the
 percent character (%) has been reserved, and the exceptional
-characters are produced as combinations of two characters:
+characters are produced as combinations of two characters (both when
+defining the character sets and in the X and Y parts of rules):
 
 - `%n` newline
 
@@ -550,7 +551,9 @@ rule is applied in the normal manner, in the deterministic way (MD=1).
 
 The rewriting parts (X, Y) end always in a semicolon (;). If semicolons
 or exclamation marks will be included in them, a percent character (%)
-must be placed in front of them.
+must be placed in front of them (cf. section 2.3, and note also that 
+also in the X and Y parts you must write two percent signs (%%) to
+represent one in the input/output data).
 
 The resulting states are integers of the range 1 - 127. Moves to new
 states are defined only as parameters in rules. To be meaningful, they
