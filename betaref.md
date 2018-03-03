@@ -927,12 +927,12 @@ further analysis continues from the spot, where the dot is moved after
 the application of the rule. There are several alternatives to position
 the dot after substitution.
 
-When the record is red in, a double hatch `##` is placed to the
-beginning and the end of the record. The hatch has an important function
+When the record is red in, a double hash `##` is placed to the
+beginning and the end of the record. The hashh has an important function
 in showing the beginning and end of the record. If there is \# on the
 left side of a certain character, it marks the beginning of the record.
 If \# is located to the right of the character, it marks the end of the
-record. Because of the special meaning of the hatch (\#) character it is
+record. Because of the special meaning of the hash (\#) character it is
 recommended that this character will not be used except for indicating
 the beginning and end of the logical record.
 
@@ -959,23 +959,23 @@ substitution part of which (X-part) is found to the right of the dot.
 In the beginning of analysis, the dot is after the inital pair of hash
 signs in the record; it is part of the record to be analyzed:
 
-    ## >>> abcdefg##
+    # >>> #abcdefg##
 
 Beta tries to apply rules to the following strings, and in this order*:
-abcdefg, abcdef, abcde, abcd, abc, ab, a, ''* The first
+#abcdefg, #abcdef, #abcde, #abcd, #abc, #ab, #a, '#'* The first
 suitable rule is applied, and then the process continues as defined by
 the rule. If there is no matching rule, the dot moves one character to
 the right and the process continues:
 
-    ##a >>> bcdefg##
+    ## >>> abcdefg##
 
-Now the following strings will be analyzed: *bcdefg, bcdef, bcde*
+Now the following strings will be analyzed: *abcdefg, abcdef, abcde*
 \... etc.
 
 The MV-parameter has six central numerical values, and each of them
 relocates the dot into a certain place compared to its present location.
 In order to illuminate the various possibilities, let us take a string
-*aacdefg*, and in the rules the rule d -\> xy. The six possible values
+*aacdefg*, and in the rules the rule `d -> xy`. The six possible values
 of the MV-parameter and their consequences are the following. Note that
 after substitution the string d is rewritten as xy, as the rule defines.
 Thus the rewritten string xy matches with the Y-part of the rule.
@@ -984,21 +984,21 @@ The value The location of dot Dot moved to
 
 of MV after rule application point to
 
-1. \# \>\>\> \#aacxyefg\#\# the second of two hatches in the beginning of
+1. `# >>> #aacxyefg##` the second of two hash signs in the beginning of
 the record
 
-2. \#\#aa \>\>\> cxyefg\#\# the character before Y, the one which was LC
+2. `##aa >>> cxyefg##` the character before Y, the one which was LC
 
-3. \#\#aac \>\>\> xyefg\#\# the first character of Y, i.e. the character
+3. `##aac >>> xyefg##` the first character of Y, i.e. the character
 after LC
 
-4. \#\#aacx \>\>\> yefg\#\# the last character of Y, i.e. the character
+4. `##aacx >>> yefg##` the last character of Y, i.e. the character
 before RC
 
-5. \#\#aacxy \>\>\> efg\#\# the character after Y, i.e. the character
+5. `##aacxy >>> efg##` the character after Y, i.e. the character
 which was RC
 
-6. \#\#aacxyefg \>\>\> \#\# the end of record
+6. `##aacxyefg >>> ##` the end of record
 
 If Y is empty, i.e. if the X string is deleted, the MV-points 2 and 4
 are mutually identical, as well as the points 3 and 5.
@@ -1019,8 +1019,8 @@ up the process to some extent.
 Below are the values of the MV-parameter shown in a schematic form:
 
     # # A B C LC Y Y Y RC F G H # #
-       |     |  |   | |        |    |
-       1     2  3   4 5        6    7
+     |       |  |   | |        |    |
+     1       2  3   4 5        6    7
 
 ### 3.7. The mode of application
 
@@ -1279,7 +1279,7 @@ The following simple Beta grammar performs the task:
 
 If no string is found where the first rule applies, the dot continues to
 move forward, until in the end of the record it encounters the final
-hatch `#`. Now the second rule applies, and because its MV-parameter
+hash `#`. Now the second rule applies, and because its MV-parameter
 is 0 (see 3.2.5.), the whole string is discarded. If a string and is
 found, with a blank or boundary character on both sides, the process is
 divided into two parts. The first branch continues further in state 1
@@ -1288,7 +1288,7 @@ The second branch applies the first rule, and because its MV-parameter
 is 7, the whole record is monitored immediately. The first branch will
 later find another string *and*, where it again branches out. The first
 branch continues still further, until it will be killed at the final
-hatch (rule 2 applies). The new branch applies the first rule to the
+hash (rule 2 applies). The new branch applies the first rule to the
 second occurrence of the string and, and monitors it immediately.
 
 If we want to extract several kinds of strings simultaneously, we may
