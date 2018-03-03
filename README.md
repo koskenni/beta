@@ -22,4 +22,5 @@ The beta.py program runs at least on Gnu/Linux, Unix, Mac OS X and WIndows 7 pla
 - **Version 0.3.2** - 2018-02-08: Char and state set names can now include #
 - **Version 0.3,3** - 2018-02-09: Validity of ch and st sets is checked; character and state names may now have more symbols in them; parenthesis comments now also for rules without condition or other params
 - **Version 0.4** - 2018-02-15: grammar file now as obligatory argument and --input and --output parameters added
+- **Version 0.5** - 2018-03-03: mv=1 now moves to between the initial two boundary markers, i.e. `# >>> #xyzabcd##`
 
