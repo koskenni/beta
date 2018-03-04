@@ -1,5 +1,5 @@
 #!/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5
-# beta.py - Version 0.4
+# beta.py - Version 0.5
 #
 copyright = """Copyright © 2017-2018, Kimmo Koskenniemi
 This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ def betaproc(line, max_cycles, verbosity, output_file):
     global trie, chset, stset
     cycles = 0
     items = deque()
-    item = ("##", line + "##", 1)
+    item = ("#", "#" + line + "##", 1)
     item_set = {item}
     items.appendleft(item)
     while len(items) > 0:                              # item loop
@@ -95,8 +95,8 @@ def betaproc(line, max_cycles, verbosity, output_file):
                     left1 = ""
                     right1 = ""
                 elif mv == 1:           # move to the beginning
-                    left1 = "##"
-                    right1 = left[2:] + y + right[len(x):]
+                    left1 = "#"
+                    right1 = "#" + left[2:] + y + right[len(x):]
                 elif mv == 2:
                     left1 = left[:-1]
                     right1 = left[-1:] + y + right[len(x):]
@@ -127,7 +127,7 @@ def betaproc(line, max_cycles, verbosity, output_file):
                 if verbosity == 1:
                     print("    " + left1 + " >>> " + right1 + " -- " + str(ns))
 
-                if len(left1) >= 2 and len(right1) >= 2:
+                if len(left1) >= 1 and len(right1) >= 2:
                     items.appendleft((left1, right1, ns))
                 if verbosity >= 10:
                     print((left1, right1, ns), "pushed to the queue")
@@ -338,7 +338,7 @@ def testing(verbosity):
 
 if __name__ == "__main__":
     import argparse, sys
-    arpar = argparse.ArgumentParser("python3 beta.py # version 0.4")
+    arpar = argparse.ArgumentParser("python3 beta.py # version 0.5")
     arpar.add_argument("rules", help="the name of the beta rule grammar file")
     arpar.add_argument("-i", "--input",
                         help="file from which input is read if not stdin",
