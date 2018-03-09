@@ -23,4 +23,5 @@ The beta.py program runs at least on Gnu/Linux, Unix, Mac OS X and WIndows 7 pla
 - **Version 0.3,3** - 2018-02-09: Validity of ch and st sets is checked; character and state names may now have more symbols in them; parenthesis comments now also for rules without condition or other params
 - **Version 0.4** - 2018-02-15: grammar file now as obligatory argument and --input and --output parameters added
 - **Version 0.5** - 2018-03-03: mv=1 now moves to between the initial two boundary markers, i.e. `# >>> #xyzabcd##`
+- **Version 0.5.1** - 2018-04-09: The punctuation char of LIMITOR now included in the record
 
