@@ -385,12 +385,18 @@ if __name__ == "__main__":
         elif '#' in chset["LIMITOR"]:
             betaproc(line[:-1], args.max_loops, args.verbosity, output_file)
         else:
-            buffer = buffer + " " + line[:-1]
+            if line[-1] == "\n":
+                buffer = buffer + " " + line[:-1]
+            else:
+                buffer = buffer + " " + line
             while True:
-                l = re.split(lim_expr, buffer, maxsplit=1)
-                if len(l) == 1:
+                lst = re.split(lim_expr, buffer, maxsplit=1)
+                if len(lst) == 1:
                     break
-                betaproc(l[0], args.max_loops, args.verbosity, output_file)
-                buffer = l[1]
+                lgth = len(lst[0]) + 1
+                left_part = buffer[:lgth]
+                right_part = buffer[lgth:]
+                betaproc(left_part, args.max_loops, args.verbosity, output_file)
+                buffer = right_part
     if buffer:
         betaproc(buffer, args.max_loops, args.verbosity, output_file)

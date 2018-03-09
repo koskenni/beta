@@ -1,0 +1,14 @@
+CHARACTER-SETS
+  S#: # BLANK
+  #: #
+  LIMITOR: . ? ! :
+STATE-SETS
+  5: 5
+RULES
+!            lc  rc  sc  rs  mv  md
+v; <<v;      S#   0   0   5   5   2
+V; <<V;
+ ; >> ;       0   0   5   0   7   1
+#; >>#;
+!            lc  rc  sc  rs  mv  md
+#; #;         0   #   0   0   0   1
