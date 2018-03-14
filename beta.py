@@ -151,6 +151,14 @@ def betaproc(line, max_cycles, verbosity, output_file):
 
 import re
 
+def decode_quoted(str):
+    str = str.replace("%;", ";")
+    str = str.replace("%!", "!")
+    str = str.replace("%n", "\n")
+    str = str.replace("%t", "\t")
+    str = str.replace("%%", "%")
+    return(str)
+
 def character_sets(list_of_set_defs, verbosity):
     global chset, args
     for lineno, set_def in list_of_set_defs:
@@ -161,7 +169,8 @@ def character_sets(list_of_set_defs, verbosity):
             set_name = mat.group(1)
             symbol_str = mat.group(2)
             symbol_list = re.split(r"\s+", symbol_str)
-            symbol_list = [' ' if x == "BLANK" else x for x in symbol_list]
+            symbol_list = [' ' if x == "BLANK"
+                               else decode_quoted(x) for x in symbol_list]
             chset[set_name] = set(symbol_list)
         else:
             print(lineno, ":", set_def, "** incorrect set definition")
@@ -190,14 +199,6 @@ def check_validity_of_set(name, the_set, lineno, rule):
     print("*** ERROR: undefined set name:", name)
     print("LINE", lineno, ":", rule)
     exit()
-
-def decode_quoted(str):
-    str = str.replace("%;", ";")
-    str = str.replace("%!", "!")
-    str = str.replace("%n", "\n")
-    str = str.replace("%t", "\t")
-    str = str.replace("%%", "%")
-    return(str)
 
 def rules(list_of_rules, verbosity):
     global trie, args, chset, stset
