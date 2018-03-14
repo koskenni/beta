@@ -1,5 +1,5 @@
 #!/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5
-# beta.py - Version 0.5.1
+# beta.py - Version 0.5.2
 #
 copyright = """Copyright © 2017-2018, Kimmo Koskenniemi
 This program is free software: you can redistribute it and/or modify
@@ -338,7 +338,7 @@ def testing(verbosity):
 
 if __name__ == "__main__":
     import argparse, sys
-    arpar = argparse.ArgumentParser("python3 beta.py # version 0.5.1")
+    arpar = argparse.ArgumentParser("python3 beta.py # version 0.5.2")
     arpar.add_argument("rules", help="the name of the beta rule grammar file")
     arpar.add_argument("-i", "--input",
                         help="file from which input is read if not stdin",
