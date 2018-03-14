@@ -203,7 +203,7 @@ def rules(list_of_rules, verbosity):
     global trie, args, chset, stset
     lc, rc, sc, rs, mv, md = ('0', '0', '0', 1, 5, 1)
     pat = re.compile(
-        r"""^(?P<x>(?:[^;]|%[%;!nt])+) # x part
+        r"""^(?P<x>(?:[^%;]|%[%;!nt])+) # x part
              ;\s                   # terminates the x part
              (?P<y>(?:[^%;]|%[%;!nt])*) # y part
              ;                     # terminates the y part
