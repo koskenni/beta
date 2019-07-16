@@ -1,5 +1,5 @@
 #!/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5
-# beta.py - Version 0.5.2
+# beta.py - Version 0.5.3
 #
 copyright = """Copyright © 2017-2018, Kimmo Koskenniemi
 This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,8 @@ import datrie
 
 euroletters = "´áÁćĆéÉíÍĺĹńŃóÓŕŔśŚúÚẃẂýÝźŹǽǼǿǾǻǺ˘ăĂĕĔğĞĭĬŏŎŭŬˇǎǍčČďĎěĚǧǦȟȞǐǏǩǨľĽňŇǒǑřŘšŠťŤǔǓžŽǯǮ¸çÇģĢķĶļĻņŅŗŖşŞţŢâÂĉĈêÊĝĜĥĤîÎĵĴôÔŝŜûÛŵŴŷŶ¨äÄëËïÏöÖüÜẅẄÿŸ˙ḃḂċĊḋḊėĖḟḞġĠİṁṀṗṖṡṠṫṪżŻạẠẹẸịỊọỌụỤỵỴ˝őŐűŰàÀèÈìÌòÒùÙẁẀỳỲ¯āĀēĒīĪōŌūŪǣǢǟǞ˛ąĄęĘįĮǫǪųŲ˚åÅůŮãÃẽẼĩĨñÑõÕũŨỹỸđĐǥǤħĦłŁøØŧŦắặằẳẵẮẶẰẲẴấậầẩẫẤẬẦẨẪếệềểễỆỆỀỂỄốộồổỗỐỘỒỔỖǟǞȧǡȦǠảẢẻẺỉỈỏỎủỦỷỶơớợờờỡƠỚỢỜỞỠưứựừửữƯỨỰỪỬỮǭǬǻǺƒﬁﬂĳĲŀĿŉɼſẛẛșȘțȚ"
 
-characters = string.printable + euroletters
+punctuation = ''.join([chr(i) for i in range(160,192)])
+characters = string.printable + euroletters + punctuation
 allowed_characters = set(characters)
 
 trie = datrie.Trie(characters)
