@@ -25,3 +25,4 @@ The beta.py program runs at least on Gnu/Linux, Unix, Mac OS X and WIndows 7 pla
 - **Version 0.5** - 2018-03-03: mv=1 now moves to between the initial two boundary markers, i.e. `# >>> #xyzabcd##`
 - **Version 0.5.1** - 2018-04-09: The punctuation char of LIMITOR now included in the record
 - **Version 0.5.2** - 2018-03-14: Corrections in handling % in the Y part
+- **Version 0.5.3** - 2019-07-16: Non-ascii punctuation and some special characters (e.g. §) can now be used in rules
