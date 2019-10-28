@@ -11,7 +11,7 @@ This program is free software under the GPL 3 license.
 
 Instructions for installing the beta.py program can be found in the [Beta wiki](https://github.com/koskenni/beta/wiki/faq) and in particular, on the page [install](https://github.com/koskenni/beta/wiki/install).
 
-The program depends on a package "datrie" which must be installed on your system, see the Beta wiki for [detailed instructions](https://github.com/koskenni/beta/wiki/faq).
+The program depends on a package "datrie" which must be installed on your system, see the Beta wiki for [detailed instructions](https://github.com/koskenni/beta/wiki/faq). **Note:** Version 0.7.1 of datrie has been tested to work.  The latest version 0.8 (2019-07-03) might cause troubles, if you meet such, see the Beta wiki mentioned above.
 
 The beta.py program runs at least on Gnu/Linux, Unix, Mac OS X and WIndows 7 platforms providing that an appropriate Python 3 (version 3.5 or higher) is installed.
 
@@ -25,4 +25,4 @@ The beta.py program runs at least on Gnu/Linux, Unix, Mac OS X and WIndows 7 pla
 - **Version 0.5** - 2018-03-03: mv=1 now moves to between the initial two boundary markers, i.e. `# >>> #xyzabcd##`
 - **Version 0.5.1** - 2018-04-09: The punctuation char of LIMITOR now included in the record
 - **Version 0.5.2** - 2018-03-14: Corrections in handling % in the Y part
-- **Version 0.5.3** - 2019-07-16: Non-ascii punctuation and some special characters (e.g. §) can now be used in rules
+- **Version 0.5.3** - 2019-07-16: Non-ascii punctuation and some special characters (e.g. §) can now be used in rules.  
