@@ -1,18 +1,19 @@
 #! /home/koskenni/.venv/bin/python3
-"""betapy string rewriting system
+"""beta string rewriting system
 
 Reimplementation of the Beta string rewriting engine originally
-written by Benny Brodda in Fortran and later on reimplemented by
-Kimmo Koskenniemi in Pascal and in C.
-The input formalism follows the C version as documented in
-F. Karlsson and K. Koskenniemi, "Beta-ohjelma kielentutkimuksen apuvälineenä",
+written by Benny Brodda in Fortran and later on reimplemented by Kimmo
+Koskenniemi in Pascal and in C, and now in Python3.  The input
+formalism follows the C version as documented in F. Karlsson and
+K. Koskenniemi, "Beta-ohjelma kielentutkimuksen apuvälineenä",
 Yliopistopaino, 1990.
 
-This program was written from scratch in Python3 without any
-reference to its predecessors mentioned above.
+This program was written from scratch in Python3 without any reference
+to its predecessors mentioned above.
+
 """
 #
-__version__ = "0.7"
+__version__ = "0.7.1"
 #
 copyright = """Copyright © 2017-2018, Kimmo Koskenniemi
 This program is free software: you can redistribute it and/or modify
@@ -346,7 +347,7 @@ def testing(verbosity):
 def main():
     import argparse, sys
     arpar = argparse.ArgumentParser(
-        "./betapy.py",
+        "beta",
         description=f"Python3 Beta string rewriting system, "\
         f"version {__version__}")
     arpar.add_argument("rules", help="the name of the beta rule grammar file")
