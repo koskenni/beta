@@ -24,4 +24,4 @@ requires-python = ">= 3.8"
 Home = "https://github.com/koskenni/beta"
 
 [project.scripts]
-betapy = "beta:main"
+betapy = "betapy:main"

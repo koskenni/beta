@@ -346,7 +346,7 @@ def testing(verbosity):
 def main():
     import argparse, sys
     arpar = argparse.ArgumentParser(
-        "./beta.py",
+        "./betapy.py",
         description=f"Python3 Beta string rewriting system, "\
         f"version {__version__}")
     arpar.add_argument("rules", help="the name of the beta rule grammar file")
