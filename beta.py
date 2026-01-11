@@ -1,5 +1,18 @@
-#!/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5
-# beta.py - Version 0.5.3
+#! /home/koskenni/.venv/bin/python3
+"""beta.py string rewriting system
+
+Reimplementation of the Beta string rewriting engine originally
+written by Benny Brodda in Fortran and later on reimplemented by
+Kimmo Koskenniemi in Pascal and in C.
+The input formalism follows the C version as documented in
+F. Karlsson and K. Koskenniemi, "Beta-ohjelma kielentutkimuksen apuvälineenä",
+Yliopistopaino, 1990.
+
+This program was written from scratch in Python3 without any
+reference to its predecessors mentioned above.
+"""
+#
+__version__ = 0.7
 #
 copyright = """Copyright © 2017-2018, Kimmo Koskenniemi
 This program is free software: you can redistribute it and/or modify
@@ -14,27 +27,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 #
-# Reimplementation of the Beta string rewriting engine originally
-# written by Benny Brodda in Fortran and later on reimplemented by
-# Kimmo Koskenniemi in Pascal and in C.
-# The input formalism follows the C version as documented in
-# F. Karlsson and K. Koskenniemi, "Beta-ohjelma kielentutkimuksen apuvälineenä",
-# Yliopistopaino, 1990.
-#
-# This program was written from scratch in Python3 without any
-# reference to the predecessors mentioned above.
-#
 from collections import deque
 import string
-import datrie
+import pygtrie
 
 euroletters = "´áÁćĆéÉíÍĺĹńŃóÓŕŔśŚúÚẃẂýÝźŹǽǼǿǾǻǺ˘ăĂĕĔğĞĭĬŏŎŭŬˇǎǍčČďĎěĚǧǦȟȞǐǏǩǨľĽňŇǒǑřŘšŠťŤǔǓžŽǯǮ¸çÇģĢķĶļĻņŅŗŖşŞţŢâÂĉĈêÊĝĜĥĤîÎĵĴôÔŝŜûÛŵŴŷŶ¨äÄëËïÏöÖüÜẅẄÿŸ˙ḃḂċĊḋḊėĖḟḞġĠİṁṀṗṖṡṠṫṪżŻạẠẹẸịỊọỌụỤỵỴ˝őŐűŰàÀèÈìÌòÒùÙẁẀỳỲ¯āĀēĒīĪōŌūŪǣǢǟǞ˛ąĄęĘįĮǫǪųŲ˚åÅůŮãÃẽẼĩĨñÑõÕũŨỹỸđĐǥǤħĦłŁøØŧŦắặằẳẵẮẶẰẲẴấậầẩẫẤẬẦẨẪếệềểễỆỆỀỂỄốộồổỗỐỘỒỔỖǟǞȧǡȦǠảẢẻẺỉỈỏỎủỦỷỶơớợờờỡƠỚỢỜỞỠưứựừửữƯỨỰỪỬỮǭǬǻǺƒﬁﬂĳĲŀĿŉɼſẛẛșȘțȚ"
 
 punctuation = ''.join([chr(i) for i in range(160,192)])
-characters = string.printable + euroletters + punctuation
+characters = str(sorted(string.printable + euroletters + punctuation))
+# characters = string.printable + punctuation
 allowed_characters = set(characters)
 
-trie = datrie.Trie(characters)
+trie = pygtrie.CharTrie()
 chset = {}
 stset = {}
 
@@ -56,7 +60,8 @@ def betaproc(line, max_cycles, verbosity, output_file):
         if len(right) <= 1 and len(left) >= 2:
             print(left[2:-1], file=output_file)
             continue                         # nothin more for this item
-        rule_items = trie.prefix_items(right)
+        # rule_items = trie.prefix_items(right)
+        rule_items = list(trie.prefixes(key=right))
         item_list = []
         for x in rule_items:
             item_list.append(x)
@@ -334,19 +339,22 @@ def testing(verbosity):
     )
     if verbosity > 10:
         print(chset)
-        for item in trie.items(''):
+        for item in trie.items():
             print(item)
     return
 
-if __name__ == "__main__":
+def main():
     import argparse, sys
-    arpar = argparse.ArgumentParser("python3 beta.py # version 0.5.2")
+    arpar = argparse.ArgumentParser(
+        "./beta.py",
+        description=f"Python3 Beta string rewriting system, "\
+        f"version {__version__}")
     arpar.add_argument("rules", help="the name of the beta rule grammar file")
     arpar.add_argument("-i", "--input",
                         help="file from which input is read if not stdin",
                         default="")
     arpar.add_argument("-o", "--output",
-                            help="file to which output is written if not stdout",
+                       help="file to which output is written if not stdout",
                             default="")
     arpar.add_argument("-v", "--verbosity",
                        help="level of diagnostic output",
@@ -383,7 +391,8 @@ if __name__ == "__main__":
         if ' ' in chset["LIMITOR"]:
             wdlist = re.split(r"\s+", line.strip())
             for word in wdlist:
-                betaproc(word, args.max_loops, args.verbosity, output_file)        
+                betaproc(word, args.max_loops,
+                         args.verbosity, output_file)        
         elif '#' in chset["LIMITOR"]:
             betaproc(line[:-1], args.max_loops, args.verbosity, output_file)
         else:
@@ -398,7 +407,13 @@ if __name__ == "__main__":
                 lgth = len(lst[0]) + 1
                 left_part = buffer[:lgth]
                 right_part = buffer[lgth:]
-                betaproc(left_part, args.max_loops, args.verbosity, output_file)
+                betaproc(left_part, args.max_loops,
+                         args.verbosity, output_file)
                 buffer = right_part
     if buffer:
         betaproc(buffer, args.max_loops, args.verbosity, output_file)
+    return
+
+if __name__ == "__main__":
+    main()
+    
