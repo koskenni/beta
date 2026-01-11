@@ -1,5 +1,5 @@
 #! /home/koskenni/.venv/bin/python3
-"""beta.py string rewriting system
+"""betapy string rewriting system
 
 Reimplementation of the Beta string rewriting engine originally
 written by Benny Brodda in Fortran and later on reimplemented by

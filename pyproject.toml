@@ -3,7 +3,7 @@ requires = ["flit_core >=3.11,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "beta"
+name = "betapy"
 authors = [
    {name = "Kimmo Koskenniemi", email = "koskenni@gmail.com"}
 ]
@@ -15,7 +15,7 @@ readme = "README.md"
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
 dynamic = ["version"]
-dependences = [
+dependencies = [
    "pygtrie >= 2.5"
 ]
 requires-python = ">= 3.8"
