@@ -3,14 +3,14 @@ requires = ["flit_core >=3.11,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "beta-str"
+name = "betastr"
 authors = [
    {name = "Kimmo Koskenniemi", email = "koskenni@gmail.com"}
 ]
 maintainers = [
    {name = "Kimmo Koskenniemi", email = "koskenni@gmail.com"}
 ]
-description = "beta-str string rewriting system"
+description = "betastr is a string rewriting system"
 readme = "README.md"
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
@@ -24,4 +24,4 @@ requires-python = ">= 3.8"
 Home = "https://github.com/koskenni/beta"
 
 [project.scripts]
-beta = "beta-str:main"
+beta = "betastr:main"
