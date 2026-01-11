@@ -14,7 +14,7 @@ description = "beta.py string rewriting system"
 readme = "README.md"
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
-dynamic = ["version", "description"]
+dynamic = ["version"]
 dependences = [
    "pygtrie >= 2.5"
 ]

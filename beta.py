@@ -12,7 +12,7 @@ This program was written from scratch in Python3 without any
 reference to its predecessors mentioned above.
 """
 #
-__version__ = 0.7
+__version__ = "0.7"
 #
 copyright = """Copyright © 2017-2018, Kimmo Koskenniemi
 This program is free software: you can redistribute it and/or modify
